@@ -97,7 +97,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 380111bd7e1094f46bcf7b67d1351bfc,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: a2afda5d5f4d77f43ad16939b7b64608,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 278382787}
   - component: {fileID: 278382788}
   - component: {fileID: 278382789}
+  - component: {fileID: 278382790}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1154,6 +1155,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 239934069}
+--- !u!114 &278382790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278382783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b5ee7c3febd4c86ab86fe7e77ba574e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &313992488
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,6 +3107,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2045257923548263128, guid: 09203922bc628a94088c5335d41c8f8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2045257923548263128, guid: 09203922bc628a94088c5335d41c8f8f,
         type: 3}
