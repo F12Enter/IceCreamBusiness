@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player.Controller
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IMovementController
     {
         private static float _movementMultiplier = 1f;
         

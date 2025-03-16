@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player.Controller.Rotating
 {
-    public class PlayerRotating : MonoBehaviour
+    public class PlayerRotating : MonoBehaviour, IRotatingController
     {
         [SerializeField] private Transform _cameraTransform;
         
@@ -21,7 +21,13 @@ namespace Player.Controller.Rotating
         private Controls _controls;
         private Vector2 _lookInput;
 
+        private bool _isRotationLocked;
+        
         public void SetSensitivity(float sensitivity) => _mouseSensitivity = sensitivity;
+        
+        public void LockRotation() => _isRotationLocked = true;
+        
+        public void UnlockRotation() => _isRotationLocked = false;
         
         private void Awake()
         {
@@ -36,8 +42,8 @@ namespace Player.Controller.Rotating
         
         private void Update()
         {
-            float mouseX = _lookInput.x * _mouseSensitivity;
-            float mouseY = _lookInput.y * _mouseSensitivity;
+            float mouseX = _isRotationLocked ? 0 : _lookInput.x * _mouseSensitivity;
+            float mouseY = _isRotationLocked ? 0 : _lookInput.y * _mouseSensitivity;
             
             _bodyRotationY += mouseX;
             _cameraRotationX = Mathf.Clamp(_cameraRotationX - mouseY, _xRotationLimits.min, _xRotationLimits.max);

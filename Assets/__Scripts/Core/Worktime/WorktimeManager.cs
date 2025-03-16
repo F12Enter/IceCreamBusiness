@@ -17,11 +17,13 @@ namespace Core.Worktime
         private bool _isWorking = false;
         private int _lastGameMinute = -1;
         
+        public bool IsWorking => _isWorking;
+        
         public event System.Action OnTimeUpdated;
         
         public void SetCurrentDay(int day) => _currentDay = day;
         
-        public int GetCurrentDay() => _currentDay;
+        public int CurrentDay => _currentDay;
         
         public string GetCurrentTime() => ConvertToGameTime(_currentTime);
         
