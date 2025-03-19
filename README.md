@@ -15,8 +15,4 @@
 
 ## Требования
 - UnityEngine 2022.3.37f1 LTS
-- Любая C# IDE
-
-## Установка
-1. `git clone https://github.com/F12Enter/IceCreamBusiness.git`
-2. Открыть проект в Unity Hub.
+- Blender
