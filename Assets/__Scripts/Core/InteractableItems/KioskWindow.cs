@@ -12,9 +12,12 @@ namespace Core.InteractableItems
         
         public void Interact()
         {
+            if (WorktimeManager.Instance.IsWorkDayNow) return;
+
             if (_isOpened)
             {
                 _animator.Play("close");
+                WorktimeManager.Instance.EndDay();
             }
             else
             {

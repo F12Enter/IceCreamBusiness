@@ -6,7 +6,9 @@ namespace Core.Worktime
     public class WorktimeManager : MonoBehaviour
     {
         public static WorktimeManager Instance { get; private set; }
-        
+
+        [SerializeField] private GameObject _endDayMenu;
+
         [Header("Settings")]
         [SerializeField] private float _timeToWork;
         [SerializeField] private int _dayStartHour = 8;
@@ -16,11 +18,29 @@ namespace Core.Worktime
         private float _currentTime = 0f;
         private bool _isWorking = false;
         private int _lastGameMinute = -1;
-        
+
+        public bool IsWorkDayNow => 0 < _currentTime && _currentTime < _timeToWork;
+
         public bool IsWorking => _isWorking;
         
         public event System.Action OnTimeUpdated;
-        
+
+
+        /// <summary>
+        /// When work day ends we add +1 to current day and disable player controls
+        /// </summary>
+        public void EndDay()
+        {
+            _currentDay++;
+
+            Invoke(nameof(OpenMenu), 3f);
+
+            ControlsManager.Instance.DisableControls();
+            CursorManager.UnlockCursor();
+
+            Debug.Log("Work End");
+        }
+
         public void SetCurrentDay(int day) => _currentDay = day;
         
         public int CurrentDay => _currentDay;
@@ -37,6 +57,8 @@ namespace Core.Worktime
         {
             if (Instance != null && Instance != this) Destroy(this);
             else Instance = this;
+
+            CursorManager.LockCursor();
         }
         
         private void Update()
@@ -51,25 +73,14 @@ namespace Core.Worktime
                 _lastGameMinute = currentMinute;
                 OnTimeUpdated?.Invoke();
             }
-            
+
             if (_currentTime >= _timeToWork)
-                EndDay();
+                _isWorking = false;
+            
                 
             _currentTime += Time.deltaTime;
         }
-        
-        /// <summary>
-        /// When work day ends we add +1 to current day and disable player controls
-        /// </summary>
-        private void EndDay()
-        {
-            _isWorking = false;
-            _currentDay++;
-            
-            ControlsManager.Instance.DisableControls();
-            
-            Debug.Log("Work End");
-        }
+
 
         /// <summary>
         /// Converts seconds to game time in format HH:mm
@@ -83,7 +94,11 @@ namespace Core.Worktime
 
             return $"{hours:00}:{minutes:00}";
         }
-        
+
+        private void OpenMenu()
+        {
+            _endDayMenu.SetActive(true);
+        }
     }
 }
 

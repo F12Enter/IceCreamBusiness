@@ -62,7 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d45fe0100514f08840c74c46d550e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Flavour: 0
+  _vanillaMat: {fileID: 2100000, guid: 5803295b60e14b5488351d12bd82e195, type: 2}
+  _chocolateMat: {fileID: 2100000, guid: a72cd04cddc3c094e88ff52b58291daf, type: 2}
+  _strawberryMat: {fileID: 2100000, guid: f7a42cca646db974dacfc57fbc0f3c11, type: 2}
 --- !u!33 &8534399195066049119
 MeshFilter:
   m_ObjectHideFlags: 0

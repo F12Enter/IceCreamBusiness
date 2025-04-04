@@ -41,61 +41,49 @@ namespace Core.OrderSystem
         
         public void CheckOrder()
         {
+            bool successed = false;
             var scoops = GetScoops();
 
             if (scoops.Count < _order.MinimumScoops)
             {
-                OnOrderFailed();
-                return;
+                ResultOrder(false);
             }
+            else {
 
-            // Calc order flavours count
-            Dictionary<Flavour, int> requiredFlavoursCount = new();
-            foreach (var flavour in _order.RequiredFlavours)
-            {
-                if (requiredFlavoursCount.ContainsKey(flavour))
-                    requiredFlavoursCount[flavour]++;
-                else
-                    requiredFlavoursCount[flavour] = 1;
+                // Calc order flavours count
+                Dictionary<Flavour, int> requiredFlavoursCount = new();
+                foreach (var flavour in _order.RequiredFlavours)
+                {
+                    if (requiredFlavoursCount.ContainsKey(flavour))
+                        requiredFlavoursCount[flavour]++;
+                    else
+                        requiredFlavoursCount[flavour] = 1;
+                }
+
+                // Calc player flavours count
+                Dictionary<Flavour, int> playerFlavoursCount = new();
+                foreach (var scoop in scoops)
+                {
+                    if (playerFlavoursCount.ContainsKey(scoop.Flavour))
+                        playerFlavoursCount[scoop.Flavour]++;
+                    else
+                        playerFlavoursCount[scoop.Flavour] = 1;
+                }
+
+                successed = requiredFlavoursCount.SequenceEqual(playerFlavoursCount);
+                ResultOrder(successed);
             }
-            
-            // Calc player flavours count
-            Dictionary<Flavour, int> playerFlavoursCount = new();
-            foreach (var scoop in scoops)
-            {
-                if (playerFlavoursCount.ContainsKey(scoop.Flavour))
-                    playerFlavoursCount[scoop.Flavour]++;
-                else
-                    playerFlavoursCount[scoop.Flavour] = 1;
-            }
-                
-            switch (requiredFlavoursCount.SequenceEqual(playerFlavoursCount))
-            {
-                case true:
-                    OnOrderSucceeded();
-                    break;
-                case false:
-                    OnOrderFailed();
-                    break;
-            }
-            
             Debug.Log("CheckOrder");
             
-            CustomerManager.Instance.EndOrder();
+            CustomerManager.Instance.EndOrder(_order, successed);
             Destroy(_iceCreamTransform.gameObject);
             _order = null;
         }
 
-        private void OnOrderFailed()
+        private void ResultOrder(bool isCorrect)
         {
-            Debug.Log("Order failed");
-            _text.text = "Your icecream is gowno";
-        }
-
-        private void OnOrderSucceeded()
-        {
-            Debug.Log("Order succeeded");
-            _text.text = "Thank you! your icecream is imba";
+            string msg = isCorrect ? "Your ice cream is perfect!" : "Your ice cream is very bad";
+            _text.text = msg;
         }
         
         private List<IceCreamIdentifier> GetScoops()

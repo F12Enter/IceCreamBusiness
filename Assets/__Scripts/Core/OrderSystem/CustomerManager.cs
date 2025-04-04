@@ -17,15 +17,35 @@ namespace Core.OrderSystem
         [SerializeField] private float _maxDelay;
 
         [Space]
+
+        [Header("Payment Settings")]
+
+        [SerializeField] private int _vanillaPay;
+        [SerializeField] private int _chocolatePay;
+        [SerializeField] private int _strawberryPay;
+
+        [Space]
         
         [SerializeField] private Customer _customer;
         [SerializeField] private Transform _customerObject;
         
         private Vector3 _customerStartPosition;
         private bool _isAlreadyOrdered;
+        private int _moneyPerDay = 0;
 
-        public void EndOrder()
+        public int MoneyPerDay => _moneyPerDay;
+
+        public void ResetMoneyPD() => _moneyPerDay = 0;
+
+        public void EndOrder(OrderData orderData, bool successed)
         {
+            if (successed)
+            {
+                int payment = GeneratePrice(orderData);
+                Economy.EconomyManager.AddMoney(payment);
+                _moneyPerDay += payment;
+            }
+
             Debug.Log("EndOrder");
             _isAlreadyOrdered = false;
             StartCoroutine(PlayAnimation(false));
@@ -79,6 +99,29 @@ namespace Core.OrderSystem
             
             var order = new OrderData(flavours, scoops, id.ToString());
             return order;
+        }
+
+        private int GeneratePrice(OrderData orderData)
+        {
+            int price = 0;
+
+            foreach (Flavour flavour in orderData.RequiredFlavours)
+            {
+                switch (flavour)
+                {
+                    case Flavour.Vanilla:
+                        price += _vanillaPay;
+                        break;
+                    case Flavour.Chocolate:
+                        price += _chocolatePay;
+                        break;
+                    case Flavour.Strawberry:
+                        price += _strawberryPay;
+                        break;
+                }
+            }
+
+            return price;
         }
 
         private IEnumerator PlayAnimation(bool isComing = true)
