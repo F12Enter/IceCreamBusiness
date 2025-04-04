@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Core.OrderSystem;
 
 namespace Core.IceCreamMaker
 {
@@ -11,8 +12,9 @@ namespace Core.IceCreamMaker
         [Header("Ice Cream Machine Settings")]
         [SerializeField] private IceCreamBall _ballPrefab;
         [SerializeField] private Transform _spawnPosition;
-        [SerializeField] private Transform _iceCreamTransform;
         [SerializeField] private float _spawnDelay;
+        
+        private Flavour _currentFlavour;
         
         private bool _isHolding;
         private bool _isAbleToUse;
@@ -27,7 +29,8 @@ namespace Core.IceCreamMaker
         {
             while (_isHolding && _isAbleToUse)
             {
-                Instantiate(_ballPrefab, _spawnPosition.position, Quaternion.identity, _iceCreamTransform);
+                var iceCream = Instantiate(_ballPrefab, _spawnPosition.position, Quaternion.identity, ConeSpawner.Instance.Cone.transform);
+                iceCream.GetComponent<IceCreamIdentifier>().Flavour = _currentFlavour;
                 yield return new WaitForSeconds(_spawnDelay);
             }
 

@@ -14,8 +14,8 @@
   - Окружение
 
 ## Требования
-- UnityEngine 2022.3.37f1 LTS
-- Любая C# IDE
+- UnityEngine 2021.3.29f1 LTS
+- Blender 3.6+
 
 ## Установка
 1. `git clone https://github.com/F12Enter/IceCreamBusiness.git`

@@ -21,12 +21,12 @@ namespace UI.UserInterface
 
         private void UpdateUI()
         {
-            int currentDay = _timeManager.GetCurrentDay();
+            int currentDay = _timeManager.CurrentDay;
             string currentTime = _timeManager.GetCurrentTime();
 
             if (currentDay != _cachedDay || currentTime != _cachedTime)
             {
-                _text.text = $"Day: {_timeManager.GetCurrentDay()}. Time: {_timeManager.GetCurrentTime()}";
+                _text.text = $"Day: {_timeManager.CurrentDay}. Time: {_timeManager.GetCurrentTime()}";
                 _cachedDay = currentDay;
                 _cachedTime = currentTime;
             }

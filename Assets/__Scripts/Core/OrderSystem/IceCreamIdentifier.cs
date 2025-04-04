@@ -1,6 +1,8 @@
-﻿namespace Core.OrderSystem
+﻿using UnityEngine;
+
+namespace Core.OrderSystem
 {
-    public class IceCreamIdentifier
+    public class IceCreamIdentifier : MonoBehaviour
     {
         public Flavour Flavour;
     }

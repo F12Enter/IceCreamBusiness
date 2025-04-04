@@ -73,6 +73,15 @@ namespace Core.Input
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1.401298E-45,pressPoint=0.1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""23c9aad7-88b3-4b7b-b316-bce13a5fea08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -174,6 +183,17 @@ namespace Core.Input
                     ""action"": ""IceCream"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ae4f8df-968b-484b-ba6e-320efddf4426"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -187,6 +207,7 @@ namespace Core.Input
             m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
             m_Gameplay_Debug = m_Gameplay.FindAction("Debug", throwIfNotFound: true);
             m_Gameplay_IceCream = m_Gameplay.FindAction("IceCream", throwIfNotFound: true);
+            m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -253,6 +274,7 @@ namespace Core.Input
         private readonly InputAction m_Gameplay_Interact;
         private readonly InputAction m_Gameplay_Debug;
         private readonly InputAction m_Gameplay_IceCream;
+        private readonly InputAction m_Gameplay_Drop;
         public struct GameplayActions
         {
             private @Controls m_Wrapper;
@@ -262,6 +284,7 @@ namespace Core.Input
             public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
             public InputAction @Debug => m_Wrapper.m_Gameplay_Debug;
             public InputAction @IceCream => m_Wrapper.m_Gameplay_IceCream;
+            public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -286,6 +309,9 @@ namespace Core.Input
                 @IceCream.started += instance.OnIceCream;
                 @IceCream.performed += instance.OnIceCream;
                 @IceCream.canceled += instance.OnIceCream;
+                @Drop.started += instance.OnDrop;
+                @Drop.performed += instance.OnDrop;
+                @Drop.canceled += instance.OnDrop;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -305,6 +331,9 @@ namespace Core.Input
                 @IceCream.started -= instance.OnIceCream;
                 @IceCream.performed -= instance.OnIceCream;
                 @IceCream.canceled -= instance.OnIceCream;
+                @Drop.started -= instance.OnDrop;
+                @Drop.performed -= instance.OnDrop;
+                @Drop.canceled -= instance.OnDrop;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -329,6 +358,7 @@ namespace Core.Input
             void OnInteract(InputAction.CallbackContext context);
             void OnDebug(InputAction.CallbackContext context);
             void OnIceCream(InputAction.CallbackContext context);
+            void OnDrop(InputAction.CallbackContext context);
         }
     }
 }

@@ -1,10 +1,13 @@
 using Core.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.Interaction
 {
     public class PlayerInteract : MonoBehaviour
     {
+        public static PlayerInteract Instance { get; private set; }
+        
         [Header("Interaction Settings")]
         [SerializeField] private float _distance = 5f;
         [SerializeField] private LayerMask _interactionLayer;
@@ -13,15 +16,25 @@ namespace Player.Interaction
 
         private void Awake()
         {
+            if (Instance != null && Instance != this) Destroy(this);
+            else Instance = this;
+            
             _controls = new Controls();
             
-            _controls.Gameplay.Interact.performed += _ => Interact();
         }
-        
-        private void OnEnable() => _controls.Enable();
-        private void OnDisable() => _controls.Disable();
+        private void OnEnable()
+        {
+            _controls.Gameplay.Enable();
+            _controls.Gameplay.Interact.performed += Interact;
+        }
 
-        private void Interact()
+        private void OnDisable()
+        {
+            _controls.Gameplay.Interact.performed -= Interact;
+            _controls.Disable();
+        }
+
+        private void Interact(InputAction.CallbackContext context)
         {
             var cameraTransform = Camera.main.transform;
             if (Physics.Raycast(cameraTransform.position, 
