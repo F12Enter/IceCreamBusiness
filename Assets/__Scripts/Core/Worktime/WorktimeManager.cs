@@ -1,3 +1,4 @@
+using Core.SaveSystem;
 using Player.Controller;
 using UnityEngine;
 
@@ -19,13 +20,18 @@ namespace Core.Worktime
         private bool _isWorking = false;
         private int _lastGameMinute = -1;
 
+        public int CurrentDay => _currentDay;
+        
         public bool IsWorkDayNow => 0 < _currentTime && _currentTime < _timeToWork;
 
         public bool IsWorking => _isWorking;
         
         public event System.Action OnTimeUpdated;
 
-
+        public string GetCurrentTime() => ConvertToGameTime(_currentTime);
+        
+        public void SetCurrentDay(int day) => _currentDay = day;
+        
         /// <summary>
         /// When work day ends we add +1 to current day and disable player controls
         /// </summary>
@@ -40,12 +46,6 @@ namespace Core.Worktime
 
             Debug.Log("Work End");
         }
-
-        public void SetCurrentDay(int day) => _currentDay = day;
-        
-        public int CurrentDay => _currentDay;
-        
-        public string GetCurrentTime() => ConvertToGameTime(_currentTime);
         
         public void StartDay()
         {
@@ -57,6 +57,8 @@ namespace Core.Worktime
         {
             if (Instance != null && Instance != this) Destroy(this);
             else Instance = this;
+
+            _currentDay = PlayerPrefsLoader.GetDays();
 
             CursorManager.LockCursor();
         }
