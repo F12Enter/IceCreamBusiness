@@ -26,12 +26,10 @@ namespace Core.MainMenu
         [SerializeField] private Button _resumeGameButton;
 
         /// <summary>
-        /// Clears PlayerPrefs, fills in default values and starts the game scene
+        /// Fills in default values and starts the game scene
         /// </summary>
         private void StartNewGame()
         {
-            PlayerPrefs.DeleteAll();
-            
             Economy.EconomyManager.SetMoney(_moneyAmount);
 
             Array flavours = Enum.GetValues(typeof(Flavour));

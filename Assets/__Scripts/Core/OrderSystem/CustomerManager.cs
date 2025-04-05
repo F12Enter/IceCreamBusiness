@@ -120,7 +120,7 @@ namespace Core.OrderSystem
                         break;
                 }
             }
-
+            Debug.Log("Price " + price);
             return price;
         }
 

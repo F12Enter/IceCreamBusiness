@@ -56,7 +56,7 @@ namespace Core.IceCreamMaker
             if (Instance != null && Instance != this) Destroy(gameObject);
             else Instance = this;
             
-            _controls = new Controls();
+            _controls = InputManager.Instance.Controls;
         }
 
         private void OnHoldStarted()

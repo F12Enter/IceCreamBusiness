@@ -19,7 +19,7 @@ namespace Player.Interaction
             if (Instance != null && Instance != this) Destroy(this);
             else Instance = this;
             
-            _controls = new Controls();
+            _controls = InputManager.Instance.Controls;
             
         }
         private void OnEnable()

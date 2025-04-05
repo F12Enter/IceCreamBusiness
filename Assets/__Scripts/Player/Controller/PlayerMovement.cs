@@ -37,7 +37,7 @@ namespace Player.Controller
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
-            _controls = new Controls();
+            _controls = InputManager.Instance.Controls;
             
             _controls.Gameplay.Move.performed += ctx => _inputDirection = ctx.ReadValue<Vector2>();
             _controls.Gameplay.Move.canceled += _ => _inputDirection = Vector2.zero;
