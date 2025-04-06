@@ -1,4 +1,6 @@
+using Core.Economy;
 using Core.SaveSystem;
+using Core.Statistics;
 using Player.Controller;
 using UnityEngine;
 
@@ -43,16 +45,17 @@ namespace Core.Worktime
 
             ControlsManager.Instance.DisableControls();
             CursorManager.UnlockCursor();
-
+            
             Debug.Log("Work End");
         }
+        
         
         public void StartDay()
         {
             _currentTime = 0f;
             _isWorking = true;
         }
-
+        
         private void Awake()
         {
             if (Instance != null && Instance != this) Destroy(this);

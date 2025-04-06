@@ -2,6 +2,7 @@ using System;
 using Core.Economy;
 using Core.OrderSystem;
 using Core.SaveSystem;
+using Core.Statistics;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,7 @@ namespace Core.MainMenu
         private void StartNewGame()
         {
             Economy.EconomyManager.SetMoney(_moneyAmount);
+            PlayerPrefsLoader.SaveDays(1);
 
             Array flavours = Enum.GetValues(typeof(Flavour));
             foreach (var flav in flavours)
@@ -56,6 +58,9 @@ namespace Core.MainMenu
         {
             _startGameButton.onClick.AddListener(StartNewGame);
             _resumeGameButton.onClick.AddListener(ResumeGame);
+            
+            if (!PlayerPrefsLoader.GetGameSaveableState())
+                _resumeGameButton.interactable = false;
         }
 
         private void OnDestroy()

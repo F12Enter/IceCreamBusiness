@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5add3837a571f04399fe704f985e035, type: 3}
+  m_Name: English
+  m_EditorClassIdentifier: 
+  LanguageName: English
+  LanguageCode: en
+  _translations:
+  - Key: UI.MainMenu.StartNewGameButton
+    Value: Start new game
+  - Key: UI.MainMenu.ResumeGameButton
+    Value: Continue game
+  - Key: UI.MainMenu.SettingsButton
+    Value: Settings
+  - Key: UI.MainMenu.BackToMenuButton
+    Value: Back
+  - Key: UI.Settings.MasterVolume
+    Value: Master Volume
+  - Key: UI.Settings.SelectLang
+    Value: Language
+  - Key: UI.Settings.WalkForward
+    Value: Walk forward
+  - Key: UI.Settings.WalkBackward
+    Value: Walk backward
+  - Key: UI.Settings.WalkLeft
+    Value: Walk left
+  - Key: UI.Settings.WalkRight
+    Value: Walk right
+  - Key: UI.Settings.Interact
+    Value: Interact
+  - Key: UI.Settings.IceCreamMachine
+    Value: Use ice cream machine
+  - Key: UI.Settings.DropItem
+    Value: Drop item
+  - Key: Game.Settings.TryLeaveButton
+    Value: Leave
+  - Key: Game.Settings.WarningMessage
+    Value: 'Are you really want to leave?
+
+      <color=red>Your progress will be
+      lost!</color>'
+  - Key: Game.Settings.NoButton
+    Value: Return
+  - Key: Game.Settings.YesButton
+    Value: Confirm
+  - Key: Game.EndDay.Wasted
+    Value: Wasted ice cream balls today
+  - Key: Game.EndDay.Profit
+    Value: Daily profit
+  - Key: Game.EndDay.TotalBalls
+    Value: Total ice cream balls
+  - Key: Game.EndDay.Balance
+    Value: Current balance
+  - Key: Game.EndDay.ShopTitle
+    Value: Purchasing department
+  - Key: Game.EndDay.Vanilla
+    Value: Vanilla balls
+  - Key: Game.EndDay.Chocolate
+    Value: Chocolate balls
+  - Key: Game.EndDay.Strawberry
+    Value: Strawberry balls
+  - Key: Game.EndDay.TotalCost
+    Value: Total cost
+  - Key: Game.EndDay.BuyButton
+    Value: Buy
+  - Key: NPC.Order
+    Value: I need {0} scoops of {1} flavour.
+  - Key: NPC.OrderSuccess
+    Value: Your ice cream is perfect! Thank you
+  - Key: NPC.OrderFail
+    Value: This is not at all what I asked for!
+  - Key: Flavour.Vanilla
+    Value: Vanilla
+  - Key: Flavour.Chocolate
+    Value: Chocolate
+  - Key: Flavour.Strawberry
+    Value: Strawberry
+  - Key: Game.OverScreen.Title
+    Value: GAME OVER
+  - Key: Game.OverScreen.Reason
+    Value: You have no money and resources.
+  - Key: Game.OverScreen.ExitButton
+    Value: Exit

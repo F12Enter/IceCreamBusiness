@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using Core.Localization;
 
 namespace Core.OrderSystem
 {
@@ -13,8 +15,13 @@ namespace Core.OrderSystem
 
         public string PrintOrder()
         {
-            string flavours = string.Join(", ", RequiredFlavours);
-            return $"I need {MinimumScoops} scoops of {flavours} flavour.";
+            var translatedFlavours = RequiredFlavours.Select(flavour =>
+                TranslationManager.Instance.GetTranslation($"Flavour.{flavour}")
+            );
+            string flavours = string.Join(", ", translatedFlavours);
+            
+            return TranslationManager.Instance.GetTranslation("NPC.Order", MinimumScoops, flavours);
+           
         }
 
         public OrderData(List<Flavour> flavours, int minimumScoops, string orderID)

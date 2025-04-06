@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Localization;
 using Player.Interaction;
 using Player.Inventory;
 using TMPro;
@@ -82,7 +83,7 @@ namespace Core.OrderSystem
 
         private void ResultOrder(bool isCorrect)
         {
-            string msg = isCorrect ? "Your ice cream is perfect!" : "Your ice cream is very bad";
+            string msg = isCorrect ? TranslationManager.Instance.GetTranslation("NPC.OrderSuccess") : TranslationManager.Instance.GetTranslation("NPC.OrderFail");
             _text.text = msg;
         }
         

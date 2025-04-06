@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5add3837a571f04399fe704f985e035, type: 3}
+  m_Name: Russian
+  m_EditorClassIdentifier: 
+  LanguageName: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+  LanguageCode: ru
+  _translations:
+  - Key: UI.MainMenu.StartNewGameButton
+    Value: "\u041D\u043E\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
+  - Key: UI.MainMenu.ResumeGameButton
+    Value: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+  - Key: UI.MainMenu.SettingsButton
+    Value: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+  - Key: UI.MainMenu.BackToMenuButton
+    Value: "\u041D\u0430\u0437\u0430\u0434"
+  - Key: UI.Settings.MasterVolume
+    Value: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  - Key: UI.Settings.SelectLang
+    Value: "\u042F\u0437\u044B\u043A"
+  - Key: UI.Settings.WalkForward
+    Value: "\u0412\u043F\u0435\u0440\u0451\u0434"
+  - Key: UI.Settings.WalkBackward
+    Value: "\u041D\u0430\u0437\u0430\u0434"
+  - Key: UI.Settings.WalkLeft
+    Value: "\u0412\u043B\u0435\u0432\u043E"
+  - Key: UI.Settings.WalkRight
+    Value: "\u0412\u043F\u0440\u0430\u0432\u043E"
+  - Key: UI.Settings.Interact
+    Value: "\u0412\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435"
+  - Key: UI.Settings.IceCreamMachine
+    Value: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C
+      \u0430\u043F\u043F\u0430\u0440\u0430\u0442 \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0433\u043E"
+  - Key: UI.Settings.DropItem
+    Value: "\u0412\u044B\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043C\u0435\u0442"
+  - Key: Game.Settings.TryLeaveButton
+    Value: "\u0412\u044B\u0439\u0442\u0438"
+  - Key: Game.Settings.WarningMessage
+    Value: "\u0412\u044B \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E
+      \u0445\u043E\u0442\u0438\u0442\u0435 \u0432\u044B\u0439\u0442\u0438?\n<color=red>\u041F\u0440\u043E\u0433\u0440\u0435\u0441\u0441
+      \u0442\u0435\u043A\u0443\u0449\u0435\u0433\u043E \u0434\u043D\u044F \u0431\u0443\u0434\u0435\u0442
+      \u0443\u0442\u0435\u0440\u044F\u043D!</color>"
+  - Key: Game.Settings.NoButton
+    Value: "\u041D\u0430\u0437\u0430\u0434"
+  - Key: Game.Settings.YesButton
+    Value: "\u0412\u044B\u0439\u0442\u0438"
+  - Key: Game.EndDay.Wasted
+    Value: "\u041F\u043E\u0442\u0440\u0430\u0447\u0435\u043D\u043E \u0448\u0442.
+      \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0433\u043E \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+  - Key: Game.EndDay.Profit
+    Value: "\u0414\u043E\u0445\u043E\u0434"
+  - Key: Game.EndDay.TotalBalls
+    Value: "\u0412\u0441\u0435\u0433\u043E \u0448\u0442. \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0433\u043E"
+  - Key: Game.EndDay.Balance
+    Value: "\u0422\u0435\u043A\u0443\u0449\u0438\u0439 \u0431\u0430\u043B\u0430\u043D\u0441"
+  - Key: Game.EndDay.ShopTitle
+    Value: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D"
+  - Key: Game.EndDay.Vanilla
+    Value: "\u0412\u0430\u043D\u0438\u043B\u044C\u043D\u043E\u0435 \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0435
+      (\u0448\u0442)"
+  - Key: Game.EndDay.Chocolate
+    Value: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434\u043D\u043E\u0435 \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0435
+      (\u0448\u0442)"
+  - Key: Game.EndDay.Strawberry
+    Value: "\u041A\u043B\u0443\u0431\u043D\u0438\u0447\u043D\u043E\u0435 \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0435
+      (\u0448\u0442)"
+  - Key: Game.EndDay.TotalCost
+    Value: "\u0426\u0435\u043D\u0430"
+  - Key: Game.EndDay.BuyButton
+    Value: "\u041A\u0443\u043F\u0438\u0442\u044C"
+  - Key: NPC.Order
+    Value: "\u042F \u0445\u043E\u0447\u0443 {0} \u0448\u0430\u0440\u0438\u043A\u043E\u0432
+      {1} \u0432\u043A\u0443\u0441\u043E\u0432."
+  - Key: NPC.OrderSuccess
+    Value: "\u042D\u0442\u043E \u0441\u0430\u043C\u043E\u0435 \u0432\u043A\u0443\u0441\u043D\u043E\u0435
+      \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0435 \u0432 \u043C\u043E\u0435\u0439
+      \u0436\u0438\u0437\u043D\u0438! \u0421\u043F\u0430\u0441\u0438\u0431\u043E"
+  - Key: NPC.OrderFail
+    Value: "\u042D\u0442\u043E \u0441\u043E\u0432\u0441\u0435\u043C \u043D\u0435
+      \u0442\u043E, \u0447\u0442\u043E \u044F \u043F\u0440\u043E\u0441\u0438\u043B!"
+  - Key: Flavour.Vanilla
+    Value: "\u0412\u0430\u043D\u0438\u043B\u0438"
+  - Key: Flavour.Chocolate
+    Value: "\u0428\u043E\u043A\u043E\u043B\u0430\u0434\u0430"
+  - Key: Flavour.Strawberry
+    Value: "\u041A\u043B\u0443\u0431\u043D\u0438\u043A\u0438"
+  - Key: Game.OverScreen.Title
+    Value: "\u041A\u041E\u041D\u0415\u0426"
+  - Key: Game.OverScreen.Reason
+    Value: "\u0423 \u0432\u0430\u0441 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B\u0438\u0441\u044C
+      \u0434\u0435\u043D\u044C\u0433\u0438 \u0438 \u043C\u043E\u0440\u043E\u0436\u0435\u043D\u043D\u043E\u0435."
+  - Key: Game.OverScreen.ExitButton
+    Value: "\u0412\u044B\u0445\u043E\u0434"
