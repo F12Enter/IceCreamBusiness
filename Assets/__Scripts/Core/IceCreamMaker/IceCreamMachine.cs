@@ -17,6 +17,10 @@ namespace Core.IceCreamMaker
         [SerializeField] private Transform _spawnPosition;
         [SerializeField] private float _spawnDelay;
         
+        [Header("Audio")]
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _pointSound;
+        
         private Flavour _currentFlavour;
         
         private bool _isHolding;
@@ -43,6 +47,8 @@ namespace Core.IceCreamMaker
 
                 IceCreamStorage.Remove(_currentFlavour, 1);
                 _wastedBalls++;
+                
+                _audioSource.PlayOneShot(_pointSound);
 
                 yield return new WaitForSeconds(_spawnDelay);
             }

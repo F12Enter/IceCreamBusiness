@@ -29,13 +29,14 @@ namespace Core.OrderSystem
         [SerializeField] private Customer _customer;
         [SerializeField] private Transform _customerObject;
         
+        private CustomerModelRandomizer _customerModelRandomizer;
         private Vector3 _customerStartPosition;
         private bool _isAlreadyOrdered;
         private int _moneyPerDay = 0;
 
         public int MoneyPerDay => _moneyPerDay;
 
-        public void ResetMoneyPD() => _moneyPerDay = 0;
+        public void ResetMoneyPd() => _moneyPerDay = 0;
 
         public void EndOrder(OrderData orderData, bool successed)
         {
@@ -71,6 +72,7 @@ namespace Core.OrderSystem
         {
             StartCoroutine(PlayAnimation());
             
+            _customerModelRandomizer.ChangeRandomModel();
             _customer.SetOrder(GenerateRandomOrder());
 
         }
@@ -79,12 +81,12 @@ namespace Core.OrderSystem
         /// Generates random OrderData.
         /// For now, it generates random flavour count from Flavour enum length
         /// And random flavours for each generated flavour count,
-        /// Also it generates random scoops count and random id (idk for what, i need to clean this later...)
+        /// Also it generates random scoops count
         /// </summary>
         /// <returns></returns>
         private OrderData GenerateRandomOrder()
         {
-            int flavourCount = Random.Range(1, Enum.GetNames(typeof(Flavour)).Length);
+            int flavourCount = Random.Range(2, Enum.GetNames(typeof(Flavour)).Length);
             List<Flavour> flavours = new();
             
             for (int i = 0; i < flavourCount; i++)
@@ -94,8 +96,8 @@ namespace Core.OrderSystem
                 flavours.Add(randomFlav);
             }
             
-            int scoops = flavourCount;                // todo
-            int id = Random.Range(1, int.MaxValue);         // todo
+            int scoops = flavourCount;
+            int id = Random.Range(1, int.MaxValue); 
             
             var order = new OrderData(flavours, scoops, id.ToString());
             return order;
@@ -145,6 +147,8 @@ namespace Core.OrderSystem
         {
             _customerStartPosition = _customerObject.position;
             _customerObject.position += new Vector3(0, -5, 0); // Hide customer
+            
+            _customerModelRandomizer = GetComponent<CustomerModelRandomizer>();
             
             StartCoroutine(SpawnCustomers());
         }

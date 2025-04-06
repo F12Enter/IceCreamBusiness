@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Core.Localization
 {
+    /// <summary>
+    /// A class for managing game localization
+    /// </summary>
     public class TranslationManager : MonoBehaviour
     {
         public static TranslationManager Instance { get; private set; }
@@ -42,7 +45,7 @@ namespace Core.Localization
         }
         
         /// <summary>
-        /// Tries to get translation of the current language with key and arguments
+        /// Tries to get translation of the current language with key and arguments that will be replaced like {0}, {1} etc.
         /// </summary>
         /// <param name="key"></param>
         /// <param name="args"></param>

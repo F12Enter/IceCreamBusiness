@@ -12,7 +12,7 @@ namespace Player.Controller
     {
         [SerializeField] private GameObject _menu;
         [SerializeField] private GameObject _warningPopup;
-        
+
         [SerializeField] private Button _toMenuButton;
         [SerializeField] private Button _confirmButton;
         [SerializeField] private Button _cancelButton;
@@ -45,7 +45,7 @@ namespace Player.Controller
         private void ToggleMenu(InputAction.CallbackContext ctx)
         {
             if (PlayerFocusing.Instance.IsFocused || WorktimeManager.Instance.GetCurrentTime() == "21:00") return;
-            
+
             _menu.SetActive(!_menu.activeSelf);
 
             if (_menu.activeSelf)
@@ -69,7 +69,11 @@ namespace Player.Controller
             _warningPopup.SetActive(show);
         }
 
-        private void Leave() => SceneManager.LoadScene(0);
+        private void Leave()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
+        }
     }
 }
 

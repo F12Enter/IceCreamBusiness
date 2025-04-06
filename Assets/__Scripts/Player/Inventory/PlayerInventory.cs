@@ -11,6 +11,10 @@ namespace Player.Inventory
 
         [SerializeField] private Transform _handPos;
         
+        [Header("Audio")]
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _dropSfx;
+        
         public bool IsHolding => _objectInHand != null;
         public GameObject ObjectInHand => _objectInHand;
         
@@ -42,6 +46,7 @@ namespace Player.Inventory
             else
                 _objectInHand.transform.SetParent(null);
             
+            _audioSource.PlayOneShot(_dropSfx);
             _objectInHand = null;
         }
         

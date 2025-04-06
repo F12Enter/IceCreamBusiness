@@ -10,6 +10,7 @@ namespace Player.Controllers
         private const string VolumeKey = "Volume";
         public const string LanguageKey = "Language";
         
+        
         [SerializeField] private Slider _volumeSlider;
         [SerializeField] private TMP_Dropdown _languagesDropdown;
 

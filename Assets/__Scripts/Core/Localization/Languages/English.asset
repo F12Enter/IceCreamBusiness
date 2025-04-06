@@ -28,10 +28,9 @@ MonoBehaviour:
 
       Bobiks team
 
-      
 
-      For RoboCode Project
-      2025'
+
+      For RoboCode Project 2025'
   - Key: UI.MainMenu.ExitButton
     Value: Exit
   - Key: UI.MainMenu.InfoButton
@@ -65,16 +64,17 @@ MonoBehaviour:
       3.
       Interact with ice flavours
 
-      4. Interact with ice cream machine (upside)
+      4. Interact with ice cream machine (the red
+      one)
 
-      5.
-      Interact with ice cream waffle cone
+      5. Interact with ice cream waffle cone
 
-      6. Interact with the customer!
+      6. Interact with
+      the customer!
 
 
-      And
-      if the time on clock is 21.00, you must close the window'
+      And if the time on clock is 21.00, you must close the
+      window'
   - Key: Game.Settings.TryLeaveButton
     Value: Leave
   - Key: Game.Settings.WarningMessage

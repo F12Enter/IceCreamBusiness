@@ -27,7 +27,7 @@ namespace Core.OrderSystem
         {
             _order = order;
             _text.text = _order.PrintOrder();
-
+            
             _isAbleToCheck = true;
             StartCoroutine(WaitOrder());
         }

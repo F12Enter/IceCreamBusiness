@@ -1,8 +1,10 @@
+using System.Collections;
 using Core.Economy;
 using Core.SaveSystem;
 using Core.Statistics;
 using Player.Controller;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.Worktime
 {
@@ -10,6 +12,7 @@ namespace Core.Worktime
     {
         public static WorktimeManager Instance { get; private set; }
 
+        [SerializeField] private Image _endMenuBg;
         [SerializeField] private GameObject _endDayMenu;
 
         [Header("Settings")]
@@ -17,21 +20,23 @@ namespace Core.Worktime
         [SerializeField] private int _dayStartHour = 8;
         [SerializeField] private int _dayEndHour = 21;
 
+        [Header("Visual effects")] 
+        [SerializeField] private Material _skyboxMat;
+        [SerializeField] private Light _sunLight;
+        [SerializeField] private Color _morningColor;
+        [SerializeField] private Color _eveningColor;
+
         private int _currentDay = 1;
         private float _currentTime = 0f;
         private bool _isWorking = false;
         private int _lastGameMinute = -1;
 
         public int CurrentDay => _currentDay;
-        
         public bool IsWorkDayNow => 0 < _currentTime && _currentTime < _timeToWork;
-
         public bool IsWorking => _isWorking;
-        
         public event System.Action OnTimeUpdated;
 
         public string GetCurrentTime() => ConvertToGameTime(_currentTime);
-        
         public void SetCurrentDay(int day) => _currentDay = day;
         
         /// <summary>
@@ -41,7 +46,7 @@ namespace Core.Worktime
         {
             _currentDay++;
 
-            Invoke(nameof(OpenMenu), 3f);
+            StartCoroutine(ShowEndDayMenu(3f));
 
             ControlsManager.Instance.DisableControls();
             CursorManager.UnlockCursor();
@@ -54,6 +59,34 @@ namespace Core.Worktime
         {
             _currentTime = 0f;
             _isWorking = true;
+            
+            RenderSettings.skybox.SetFloat("_BlendFactor", 0);
+            _sunLight.color = _morningColor;
+        }
+
+        private IEnumerator ShowEndDayMenu(float timeToShow)
+        {
+            float elapsedTime = 0f;
+            
+            Color startColor = _endMenuBg.color;
+            startColor.a = 0f;
+            _endMenuBg.color = startColor;
+            
+            Color endColor = _endMenuBg.color;
+            endColor.a = 1f;
+
+            while (elapsedTime < timeToShow)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsedTime / timeToShow);
+                
+                _endMenuBg.color = Color.Lerp(startColor, endColor, t);
+
+                yield return null;
+            }
+            
+            _endMenuBg.color = endColor;
+            _endDayMenu.SetActive(true);
         }
         
         private void Awake()
@@ -84,6 +117,11 @@ namespace Core.Worktime
             
                 
             _currentTime += Time.deltaTime;
+            
+            // visual effects
+            float blendFactor = Mathf.Clamp01(_currentTime / _timeToWork);
+            _skyboxMat.SetFloat("_BlendFactor", blendFactor);
+            _sunLight.color = Color.Lerp(_morningColor, _eveningColor, blendFactor);
         }
 
 
@@ -98,11 +136,6 @@ namespace Core.Worktime
             int minutes = (int)((totalHours - (int)totalHours) * 60);
 
             return $"{hours:00}:{minutes:00}";
-        }
-
-        private void OpenMenu()
-        {
-            _endDayMenu.SetActive(true);
         }
     }
 }
