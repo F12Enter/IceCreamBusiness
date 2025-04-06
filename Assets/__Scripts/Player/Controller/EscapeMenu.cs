@@ -1,4 +1,6 @@
 using Core.Input;
+using Core.Worktime;
+using Player.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -42,17 +44,21 @@ namespace Player.Controller
 
         private void ToggleMenu(InputAction.CallbackContext ctx)
         {
+            if (PlayerFocusing.Instance.IsFocused || WorktimeManager.Instance.GetCurrentTime() == "21:00") return;
+            
             _menu.SetActive(!_menu.activeSelf);
 
             if (_menu.activeSelf)
             {
                 CursorManager.UnlockCursor();
                 ControlsManager.Instance.DisableControls();
+                Time.timeScale = 0f;
             }
             else
             {
                 CursorManager.LockCursor();
                 ControlsManager.Instance.EnableControls();
+                Time.timeScale = 1f;
                 _warningPopup.SetActive(false);
             }
 

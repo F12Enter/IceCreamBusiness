@@ -4,12 +4,14 @@ using System.Linq;
 using Core.Economy;
 using UnityEngine;
 using Core.IceCreamMaker;
+using Core.Localization;
 using Core.OrderSystem;
 using Core.SaveSystem;
 using Core.Worktime;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Core.Statistics
 {
@@ -34,6 +36,11 @@ namespace Core.Statistics
         [SerializeField] private TextMeshProUGUI _vanillaAmount;
         [SerializeField] private TextMeshProUGUI _chocolateAmount;
         [SerializeField] private TextMeshProUGUI _strawberryAmount;
+        
+        [Header("Shop Price")]
+        [SerializeField] private int _vanillaPriceMultiplier;
+        [SerializeField] private int _chocolatePriceMultiplier;
+        [SerializeField] private int _strawberryPriceMultiplier;
 
         [Space]
         
@@ -46,8 +53,9 @@ namespace Core.Statistics
 
         public void FillInfo()
         {
-            _day.text = "Day " + (WorktimeManager.Instance.CurrentDay - 1) + " Completed!";
-
+            int day = (WorktimeManager.Instance.CurrentDay - 1);
+            _day.text = TranslationManager.Instance.GetTranslation("Game.EndDay.DayCompleted", day, 2);
+            
             int spentScoopsPerDayCount =
                 IceCreamStorage.VanillaCount +
                 IceCreamStorage.ChocolateCount +
@@ -83,10 +91,16 @@ namespace Core.Statistics
         
         private int GetTotalCost()
         {
-            int totalCost = _shopsInputFieldsList
-                .Select(field => int.TryParse(field.text, out int val) ? val : 0)
-                .Sum();
+//            int totalCost = _shopsInputFieldsList
+//                .Select(field => int.TryParse(field.text, out int val) ? val : 0)
+//                .Sum();
 
+        int vanillaPrice = int.TryParse(_vanillaBallsInputField.text, out int vinput) ? vinput * _vanillaPriceMultiplier : 0;
+        int chocolatePrice = int.TryParse(_chocolateBallsInputField.text, out int cinput) ? cinput * _chocolatePriceMultiplier: 0;
+        int strawberryPrice = int.TryParse(_strawberryBallsInputField.text, out int sinput) ? sinput * _chocolatePriceMultiplier: 0;
+
+        int totalCost = vanillaPrice + chocolatePrice + strawberryPrice;
+        
             return totalCost;
         }
 

@@ -10,8 +10,11 @@ namespace Player.Controller
         private PlayerMovement _playerMovement;
         private PlayerRotating _playerRotating;
 
+        public void ChangeSensitivity(float value) => _playerRotating.SetSensitivity(value);
+
         public void DisableControls()
         {
+            Debug.Log("Disabling controls");
             _playerMovement.LockMovement();
             _playerRotating.LockRotation();
         }

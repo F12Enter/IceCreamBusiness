@@ -1,6 +1,9 @@
-﻿using Player.Controller;
+﻿using Core.Input;
+using Player.Controller;
 using Player.Controller.Rotating;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.Interaction
 {
@@ -11,9 +14,12 @@ namespace Player.Interaction
     {
         public static PlayerFocusing Instance { get; private set; }
         
+        [SerializeField] private GameObject _warningText;
+        
         public bool IsFocused => _isFocused;
 
         private bool _isFocused;
+        private Controls _controls;
         
         private IMovementController _playerMovement;
         private IRotatingController _playerRotating;
@@ -21,6 +27,7 @@ namespace Player.Interaction
         public void Focus()
         {
             _isFocused = true;
+            _warningText.SetActive(true);
             
             _playerMovement.LockMovement();
             _playerRotating.LockRotation();
@@ -29,10 +36,13 @@ namespace Player.Interaction
         public void Unfocus()
         {
             _isFocused = false;
+            _warningText.SetActive(false);
             
             _playerMovement.UnlockMovement();
             _playerRotating.UnlockRotation();
         }
+        
+        private void Unfocus(InputAction.CallbackContext _) => Unfocus();
         
         private void Awake()
         {
@@ -41,6 +51,16 @@ namespace Player.Interaction
             
             _playerMovement = GetComponent<PlayerMovement>();
             _playerRotating = GetComponent<PlayerRotating>();
+            
+            _controls = InputManager.Instance.Controls;
+            _controls.UI.Enable();
+            _controls.UI.EscapeMenu.performed += Unfocus;
+        }
+
+        private void OnDestroy()
+        {
+            _controls.UI.Disable();
+            _controls.UI.EscapeMenu.performed -= Unfocus;
         }
     }
 }

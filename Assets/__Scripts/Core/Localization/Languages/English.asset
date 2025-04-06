@@ -23,6 +23,19 @@ MonoBehaviour:
     Value: Settings
   - Key: UI.MainMenu.BackToMenuButton
     Value: Back
+  - Key: UI.MainMenu.Info
+    Value: 'Game made by:
+
+      Bobiks team
+
+      
+
+      For RoboCode Project
+      2025'
+  - Key: UI.MainMenu.ExitButton
+    Value: Exit
+  - Key: UI.MainMenu.InfoButton
+    Value: Info
   - Key: UI.Settings.MasterVolume
     Value: Master Volume
   - Key: UI.Settings.SelectLang
@@ -41,6 +54,27 @@ MonoBehaviour:
     Value: Use ice cream machine
   - Key: UI.Settings.DropItem
     Value: Drop item
+  - Key: UI.Settings.Guide
+    Value: 'Stuck in?
+
+
+      1. Open the window
+
+      2. Interact with waffle cones
+
+      3.
+      Interact with ice flavours
+
+      4. Interact with ice cream machine (upside)
+
+      5.
+      Interact with ice cream waffle cone
+
+      6. Interact with the customer!
+
+
+      And
+      if the time on clock is 21.00, you must close the window'
   - Key: Game.Settings.TryLeaveButton
     Value: Leave
   - Key: Game.Settings.WarningMessage
@@ -72,12 +106,18 @@ MonoBehaviour:
     Value: Total cost
   - Key: Game.EndDay.BuyButton
     Value: Buy
+  - Key: Game.EndDay.NextDayButton
+    Value: Next day
+  - Key: Game.EndDay.DayCompleted
+    Value: Day {0} completed!
   - Key: NPC.Order
     Value: I need {0} scoops of {1} flavour.
   - Key: NPC.OrderSuccess
     Value: Your ice cream is perfect! Thank you
   - Key: NPC.OrderFail
     Value: This is not at all what I asked for!
+  - Key: NPC.TimedOut
+    Value: Why so long?
   - Key: Flavour.Vanilla
     Value: Vanilla
   - Key: Flavour.Chocolate
@@ -90,3 +130,8 @@ MonoBehaviour:
     Value: You have no money and resources.
   - Key: Game.OverScreen.ExitButton
     Value: Exit
+  - Key: Game.FocusWarning
+    Value: 'Warning!
+
+      You are focused right now. To unfocus press interact
+      key or ESC'
