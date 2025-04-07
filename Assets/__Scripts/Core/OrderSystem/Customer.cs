@@ -37,10 +37,12 @@ namespace Core.OrderSystem
         public void Interact()
         {
             if (!PlayerInventory.Instance.IsHolding || !_isAbleToCheck) return;
+            
+            StopCoroutine(WaitOrder());
 
             _iceCreamTransform = PlayerInventory.Instance.ObjectInHand.transform;
             
-            PlayerInventory.Instance.ReleaseItem(false);
+            PlayerInventory.Instance.ReleaseItem(false, false);
             
             _iceCreamTransform.SetParent(_iceCreamTPosition);
             _iceCreamTransform.localPosition = Vector3.zero;
@@ -50,7 +52,6 @@ namespace Core.OrderSystem
         
         public void CheckOrder()
         {
-            StopCoroutine(WaitOrder());
             bool successed = false;
             var scoops = GetScoops();
 
@@ -101,21 +102,10 @@ namespace Core.OrderSystem
 
         private IEnumerator WaitOrder()
         {
-            float waitedTime = 0f;
-
-            while (waitedTime < _waitTime)
-            {
-                waitedTime += Time.deltaTime;
-
-                if (waitedTime >= _waitTime)
-                {
-                    ResultOrder(false, true);
-                    StartCoroutine(EndOrder(false));
-                    yield break;
-                }
-                
-                yield return null;
-            }
+            yield return new WaitForSeconds(_waitTime);
+            
+            ResultOrder(false, true);
+            StartCoroutine(EndOrder(false));
         }
         
         private void ResultOrder(bool isCorrect, bool timeOut = false)

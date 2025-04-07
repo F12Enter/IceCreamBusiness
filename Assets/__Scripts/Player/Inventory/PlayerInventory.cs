@@ -35,7 +35,7 @@ namespace Player.Inventory
                 rb.isKinematic = true;
         }
 
-        public void ReleaseItem(bool destroy = true)
+        public void ReleaseItem(bool destroy = true, bool playsound = true)
         {
             if (!IsHolding) return;     // Prevents releasing if we aren't holding anything
             
@@ -46,7 +46,7 @@ namespace Player.Inventory
             else
                 _objectInHand.transform.SetParent(null);
             
-            _audioSource.PlayOneShot(_dropSfx);
+            if (playsound) _audioSource.PlayOneShot(_dropSfx);
             _objectInHand = null;
         }
         
